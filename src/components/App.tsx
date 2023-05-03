@@ -20,13 +20,25 @@ const App: React.FC = () => {
                 id: Date.now(),
                 title: value.trim(),
                 complete: false,
+                remove: false,
             }])
             setValue('')
         }
     }
 
     const removeTodo = (id: number): void => {
-        setTodos(todos.filter(todo => todo.id !== id))
+        setTodos(todos.map(todo => {
+            if(todo.id !== id) return todo
+
+            return {
+                ...todo,
+                remove: !todo.remove
+            }
+        }))
+        
+        setTimeout(() => {
+            setTodos(todos.filter(todo => todo.id !== id))
+        }, 800)
     }
 
     const toggleTodo = (id: number): void => {
@@ -49,7 +61,7 @@ const App: React.FC = () => {
             <div className="bg-[#e7e7e7] w-[90%] mx-[auto] flex flex-col gap-[40px]">
                 <div className="bg-[#fff] p-[10px] flex flex-wrap gap-[10px] justify-between rounded-[8px]">
                     <input className="border max-w-[100%] flex-grow px-[8px] rounded-[8px]" value={value} onKeyDown={handleKeyDown} onChange={e => setValue(e.target.value)} type="text" ref={inputRef} />
-                    <button className="border p-[6px] hover:bg-[#d1d1d1] rounded-[8px] " onClick={addTodo}>Add</button>
+                    <button className="border p-[6px] hover:bg-[#d1d1d1] rounded-[8px] " onClick={addTodo}>Add todo</button>
                 </div>
                 <TodoList items={todos} removeTodo={removeTodo} toggleTodo={toggleTodo} />
             </div>

@@ -29,6 +29,38 @@ button:active{
   display: block ;
 }
 
+.todo-item{
+  animation: show-todo 0.5s linear forwards;
+}
+.todo-item.remove{
+  animation: hide-todo 0.8s linear forwards;
+}
+
+@keyframes show-todo {
+  0%{
+    transform: translateX(-100%);
+    opacity: 0;
+  }
+  100%{
+    transform: translateX(0);
+    opacity: 1;
+  }
+}
+@keyframes hide-todo {
+  0%{
+    transform: translateX(0);
+    opacity: 1;
+  }
+  50%{
+    transform: translateX(0);
+    opacity: 1;
+  }
+  100%{
+    transform: translateX(100%);
+    opacity: 0;
+  }
+}
+
 
 @tailwind base;
 @tailwind components;

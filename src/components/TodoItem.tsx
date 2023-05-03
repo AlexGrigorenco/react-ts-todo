@@ -5,24 +5,27 @@ import { ITodo } from "../types/data";
 interface ItodoItem extends ITodo{
     removeTodo: (id: number) => void;
     toggleTodo: (id: number) => void;
-    index: number;
 }
 
 
 const TodoItem: React.FC<ItodoItem> = (props) => {
 
-    const {id, title, complete, removeTodo, toggleTodo, index} = props
+    const {id, title, complete, removeTodo, toggleTodo, remove} = props
 
     const date = new Date(id)
 
+    let wrapperClasses: string = 'relative todo-item p-[10px] rounded-[8px]'
+    wrapperClasses += complete ? ' bg-[#1deb1da1]' : ' bg-[#fff]'
+    wrapperClasses += remove ? ' remove' : ''
+
     return ( 
-        <div style={{zIndex: index + 1}} className={complete ? 'relative todo-item bg-[#1deb1da1] p-[10px] rounded-[8px]' : 'relative todo-item bg-[#fff]  p-[10px] rounded-[8px]'}>
+        <div className={wrapperClasses}>
             <div className="flex gap-[20px] justify-between">
                 <div className="flex gap-[10px]">
                     <div>
                         <input className="cursor-pointer" type="checkbox" checked={complete} onChange={() => toggleTodo(id)} />
                     </div>
-                    <span className="text-[18px] uppercase">
+                    <span className={remove ? "line-through text-[18px] uppercase opacity-50 " : "text-[18px] uppercase"}>
                         {title}
                     </span>
                 </div>
