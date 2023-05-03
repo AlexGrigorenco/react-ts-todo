@@ -45,12 +45,14 @@ const App: React.FC = () => {
     }, [])
 
     return ( 
-        <div className="p-[30px] flex flex-col gap-[30px]">
-            <div>
-                <input className="border" value={value} onKeyDown={handleKeyDown} onChange={e => setValue(e.target.value)} type="text" ref={inputRef} />
-                <button onClick={addTodo}>Add</button>
+        <div className="p-[30px] flex flex-col gap-[30px] bg-[#e7e7e7] min-h-[100vh] max-w-[80vw] mx-[auto] rounded-[8px]">
+            <div className="bg-[#e7e7e7] w-[90%] mx-[auto] flex flex-col gap-[40px]">
+                <div className="bg-[#fff] p-[10px] flex flex-wrap gap-[10px] justify-between rounded-[8px]">
+                    <input className="border max-w-[100%] flex-grow px-[8px] rounded-[8px]" value={value} onKeyDown={handleKeyDown} onChange={e => setValue(e.target.value)} type="text" ref={inputRef} />
+                    <button className="border p-[6px] hover:bg-[#d1d1d1] rounded-[8px] " onClick={addTodo}>Add</button>
+                </div>
+                <TodoList items={todos} removeTodo={removeTodo} toggleTodo={toggleTodo} />
             </div>
-            <TodoList items={todos} removeTodo={removeTodo} toggleTodo={toggleTodo} />
         </div>
      );
 }

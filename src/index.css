@@ -1,5 +1,6 @@
 body {
   margin: 0;
+  padding: 40px;
   font-family: -apple-system, BlinkMacSystemFont, 'Segoe UI', 'Roboto', 'Oxygen',
     'Ubuntu', 'Cantarell', 'Fira Sans', 'Droid Sans', 'Helvetica Neue',
     sans-serif;
@@ -11,6 +12,23 @@ code {
   font-family: source-code-pro, Menlo, Monaco, Consolas, 'Courier New',
     monospace;
 }
+
+input:focus {
+  outline: none;
+  box-shadow: none;
+}
+
+button:active{
+  opacity: 0.5
+}
+
+.todo-item .date{
+  display: none ;
+}
+.todo-item:hover .date{
+  display: block ;
+}
+
 
 @tailwind base;
 @tailwind components;

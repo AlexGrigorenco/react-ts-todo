@@ -17,7 +17,7 @@ const TodoList: React.FC<ITodoList> = (props) => {
     return ( 
         <div className="flex flex-col gap-[20px]">
             {
-                items.map(todo => <TodoItem key={todo.id} removeTodo={removeTodo} toggleTodo={toggleTodo} {...todo} />)
+                items.map((todo, index) => <TodoItem key={todo.id} index={index} removeTodo={removeTodo} toggleTodo={toggleTodo} {...todo} />)
             }
         </div>
      );
